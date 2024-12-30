@@ -3,12 +3,12 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
+function App(): JSX.Element {
 
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState<number>(0);
 
-  const getCount = () => { return 0 }
-  
+  const getCount = (): number => { return 0; }
+
   return (
     <div>
       <div>
@@ -32,7 +32,9 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </div>
-  )
+  );
 }
+
+export default App;
 
 export default App
