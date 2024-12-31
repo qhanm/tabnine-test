@@ -4,7 +4,7 @@ const Counter = () => {
   const [count, setCount] = useState(0);
 
   const handleIncrement = () => {
-    // Gợi ý ở đây
+    setCount(count + 1);
   };
 
   return (
