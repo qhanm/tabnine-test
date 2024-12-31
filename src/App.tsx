@@ -1,9 +1,14 @@
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
+
 function App() {
   const [count, setCount] = useState(0);
   const [darkMode, setDarkMode] = useState(false)
-  const [randomNumber, setRandomNumber = useState<number | null>(null); // Lỗi 1: Sai cú pháp khi gọi `useState`
+const [randomNumber, setRandomNumber] = useState<number | null>(null);
 
-  const toggleDarkMode = () => setDarkMode((prev) => !prev;
+  const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
   return (
     <div className={darkMode ? 'app dark-mode' : 'app'}>
@@ -41,3 +46,6 @@ function App() {
           Click on the Vite and React logos to learn more
         </p>
       </main> {/* Lỗi 3: Thiếu dấu đóng `</div>` cho thẻ `main` */}
+
+
+export default App;
