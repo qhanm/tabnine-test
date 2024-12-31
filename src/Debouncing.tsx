@@ -5,12 +5,20 @@ const SearchBar = () => {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      // Tabnine gợi ý logic gọi API tại đây
-    }, 500);
+    let timeoutId: number;
+
+    if (query) {
+      timeoutId = setTimeout(() => {
+        // Example: Fetch API call to search for results
+        fetch(`https://api.example.com/search?query=${query}`)
+          .then((response) => response.json())
+          .then((data) => setResults(data.results))
+          .catch((error) => console.error(error));
+      }, 500);
+    }
 
     return () => {
-      // Tabnine gợi ý clearTimeout tại đây
+      clearTimeout(timeoutId);
     };
   }, [query]);
 
