@@ -5,13 +5,29 @@ import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
-  const [darkMode, setDarkMode] = useState(false)
-const [randomNumber, setRandomNumber] = useState<number | null>(null);
+  const [darkMode, setDarkMode] = useState(false);
+  const [randomNumber, setRandomNumber] = useState<number | null>(null);
 
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
+  function findPrimesOptimized(n: number) {
+    const primes = [];
+    for (let i = 2; i <= n; i++) {
+      let isPrime = true;
+      for (let j = 2; j * j <= i; j++) {
+        // Chỉ kiểm tra đến căn bậc hai của i
+        if (i % j === 0) {
+          isPrime = false;
+          break;
+        }
+      }
+      if (isPrime) primes.push(i);
+    }
+    return primes;
+  }
+
   return (
-    <div className={darkMode ? 'app dark-mode' : 'app'}>
+    <div className={darkMode ? "app dark-mode" : "app"}>
       <header>
         <div>
           <a href="https://vite.dev" target="_blank">
@@ -22,7 +38,7 @@ const [randomNumber, setRandomNumber] = useState<number | null>(null);
           </a>
         </div>
         <button className="dark-mode-toggle" onClick={toggleDarkMode}>
-          {darkMode ? 'Light Mode' : 'Dark Mode'}
+          {darkMode ? "Light Mode" : "Dark Mode"}
         </button>
       </header>
       <main>
@@ -37,7 +53,9 @@ const [randomNumber, setRandomNumber] = useState<number | null>(null);
           <button onClick={() => setCount(0)}>Reset Count</button>
         </div>
         <div className="card">
-          <button onClick={() => setRandomNumber(Math.floor(Math.random() * 100)}> {/* Lỗi 2: Thiếu dấu đóng ngoặc `)` */}
+          <button
+            onClick={() => setRandomNumber(Math.floor(Math.random() * 100))}
+          >
             Generate Random Number
           </button>
           {randomNumber !== null && <p>Random Number: {randomNumber}</p>}
@@ -45,7 +63,11 @@ const [randomNumber, setRandomNumber] = useState<number | null>(null);
         <p className="read-the-docs">
           Click on the Vite and React logos to learn more
         </p>
-      </main> {/* Lỗi 3: Thiếu dấu đóng `</div>` cho thẻ `main` */}
 
+        <p>test: {findPrimesOptimized(100)}</p>
+      </main>
+    </div>
+  );
+}
 
 export default App;
