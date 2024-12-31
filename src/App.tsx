@@ -11,19 +11,20 @@ function App() {
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
 
   function findPrimesOptimized(n: number) {
-    const primes = [];
-    for (let i = 2; i <= n; i++) {
-      let isPrime = true;
-      for (let j = 2; j * j <= i; j++) {
-        // Chỉ kiểm tra đến căn bậc hai của i
-        if (i % j === 0) {
-          isPrime = false;
-          break;
+    const isPrime = Array(n + 1).fill(true);
+    isPrime[0] = isPrime[1] = false;
+
+    for (let i = 2; i * i <= n; i++) {
+      if (isPrime[i]) {
+        for (let j = i * i; j <= n; j += i) {
+          isPrime[j] = false;
         }
       }
-      if (isPrime) primes.push(i);
     }
-    return primes;
+
+    return isPrime
+      .map((prime, index) => (prime ? index : null))
+      .filter((x) => x !== null);
   }
 
   return (
