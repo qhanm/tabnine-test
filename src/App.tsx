@@ -4,8 +4,8 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [darkMode, setDarkMode] = useState(false);
+  const [count, setCount] = useState<number>(0);
+  const [darkMode, setDarkMode] = useState<boolean>(false);
   const [randomNumber, setRandomNumber] = useState<number | null>(null);
 
   const toggleDarkMode = () => setDarkMode((prev) => !prev);
