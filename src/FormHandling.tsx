@@ -4,7 +4,7 @@ const Form = () => {
   const [formData, setFormData] = useState({ name: "", email: "" });
 
   const handleChange = (e) => {
-    // Gợi ý tại đây
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
