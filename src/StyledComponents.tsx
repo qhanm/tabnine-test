@@ -10,7 +10,8 @@ const StyledButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    // Gợi ý style hover ở đây
+    background-color: darkblue;
+    transform: scale(1.1);
   }
 `;
 
