@@ -72,3 +72,23 @@ function App() {
 }
 
 export default App;
+
+
+// explain code 
+// The selected code snippet is a React function component named App. This component manages the state of a simple application that includes a counter, a dark mode toggle, a random number generator, and a prime number generator.
+
+// Here's a breakdown of the code:
+
+// 1.
+// Import statements: The component imports necessary modules from React, as well as local assets like reactLogo and viteLogo.
+// 2.
+// useState hooks: The component uses three useState hooks to manage its state. count keeps track of the counter value, darkMode determines whether the dark mode is enabled, and randomNumber stores the generated random number.
+// 3.
+// toggleDarkMode function: This function is used to toggle the dark mode. It updates the darkMode state by negating its current value.
+// 4.
+// findPrimesOptimized function: This function calculates and returns an array of prime numbers up to a given number n. It uses an optimized algorithm to efficiently find prime numbers.
+// 5.
+// The return statement: This is the render function of the component. It returns a JSX expression that represents the UI of the application. The UI includes a header with Vite and React logos, a dark mode toggle button, a main section with a counter, a random number generator, and a prime number generator.
+
+
+// Overall, the selected code snippet is a well-structured and functional React component that demonstrates the use of state management, event handling, and a prime number generator.
