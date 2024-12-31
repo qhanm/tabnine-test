@@ -5,9 +5,7 @@ import './App.css'
 
 function App(): JSX.Element {
 
-  const [count, setCount] = useState<number>(0);
-
-  const getCount = (): number => { return 0; }
+  const [count, setCount] = useState(0);
 
   return (
     <div>
