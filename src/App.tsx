@@ -1,17 +1,12 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
-
 function App() {
-  const [count, setCount] = useState<number>(0);
-  const [darkMode, setDarkMode] = useState<boolean>(false);
-  const [randomNumber, setRandomNumber] = useState<number | null>(null);
+  const [count, setCount] = useState(0);
+  const [darkMode, setDarkMode] = useState(false)
+  const [randomNumber, setRandomNumber = useState<number | null>(null); // Lỗi 1: Sai cú pháp khi gọi `useState`
 
-  const toggleDarkMode = () => setDarkMode((prev) => !prev);
+  const toggleDarkMode = () => setDarkMode((prev) => !prev;
 
   return (
-    <div className={darkMode ? "app dark-mode" : "app"}>
+    <div className={darkMode ? 'app dark-mode' : 'app'}>
       <header>
         <div>
           <a href="https://vite.dev" target="_blank">
@@ -22,7 +17,7 @@ function App() {
           </a>
         </div>
         <button className="dark-mode-toggle" onClick={toggleDarkMode}>
-          {darkMode ? "Light Mode" : "Dark Mode"}
+          {darkMode ? 'Light Mode' : 'Dark Mode'}
         </button>
       </header>
       <main>
@@ -37,9 +32,7 @@ function App() {
           <button onClick={() => setCount(0)}>Reset Count</button>
         </div>
         <div className="card">
-          <button
-            onClick={() => setRandomNumber(Math.floor(Math.random() * 100))}
-          >
+          <button onClick={() => setRandomNumber(Math.floor(Math.random() * 100)}> {/* Lỗi 2: Thiếu dấu đóng ngoặc `)` */}
             Generate Random Number
           </button>
           {randomNumber !== null && <p>Random Number: {randomNumber}</p>}
@@ -47,9 +40,4 @@ function App() {
         <p className="read-the-docs">
           Click on the Vite and React logos to learn more
         </p>
-      </main>
-    </div>
-  );
-}
-
-export default App;
+      </main> {/* Lỗi 3: Thiếu dấu đóng `</div>` cho thẻ `main` */}
