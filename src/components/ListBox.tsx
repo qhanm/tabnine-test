@@ -45,10 +45,12 @@ const ListBox = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
   const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setLoading(true);
         const response = await fetch(
           `https://dummyjson.com/users?limit=${limit}&skip=${
             (page - 1) * limit
@@ -57,6 +59,7 @@ const ListBox = () => {
         const data: ApiResponse = await response.json();
         setItems(data.users);
         setTotal(Math.ceil(data.total / limit));
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -74,42 +77,51 @@ const ListBox = () => {
   const handleNextPage = () => {
     setPage(page + 1);
   };
+
   return (
     <div>
-      <div className="flex flex-wrap">
-        {items.map((item) => (
-          <Item key={item.id} {...item} />
-        ))}
-      </div>
-      <div className="flex justify-center mt-4">
-        <div className="flex items-center">
-          <button
-            className="px-4 py-2 mr-2"
-            disabled={page === 1}
-            onClick={handlePreviousPage}
-          >
-            Previous
-          </button>
-          {Array.from({ length: total }, (_, index) => (
-            <button
-              key={index + 1}
-              className={`px-4 py-2 mx-1 ${
-                page === index + 1 ? "bg-gray-300" : ""
-              }`}
-              onClick={() => setPage(index + 1)}
-            >
-              {index + 1}
-            </button>
-          ))}
-          <button
-            className="px-4 py-2"
-            disabled={page === total}
-            onClick={handleNextPage}
-          >
-            Next
-          </button>
+      {loading ? (
+        <div className="flex items-center justify-center h-screen">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-400"></div>
         </div>
-      </div>
+      ) : (
+        <>
+          <div className="flex flex-wrap transition-opacity duration-500">
+            {items.map((item) => (
+              <Item key={item.id} {...item} />
+            ))}
+          </div>
+          <div className="flex justify-center mt-4">
+            <div className="flex items-center">
+              <button
+                className="px-4 py-2 mr-2"
+                disabled={page === 1}
+                onClick={handlePreviousPage}
+              >
+                Previous
+              </button>
+              {Array.from({ length: total }, (_, index) => (
+                <button
+                  key={index + 1}
+                  className={`px-4 py-2 mx-1 ${
+                    page === index + 1 ? "bg-gray-300" : ""
+                  }`}
+                  onClick={() => setPage(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              <button
+                className="px-4 py-2"
+                disabled={page === total}
+                onClick={handleNextPage}
+              >
+                Next
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };
