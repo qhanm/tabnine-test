@@ -16,7 +16,6 @@ interface ApiResponse {
 }
 
 const Item: React.FC<UserData> = ({ firstName, image, birthDate }) => {
-  console.log("name", name);
   return (
     <div className="w-1/2 sm:w-1/4 md:w-1/6 px-2 py-2 text-center">
       <div className="flex items-center justify-center h-full">
@@ -45,6 +44,7 @@ const ListBox = () => {
   const [items, setItems] = useState<UserData[]>([]);
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,6 +56,7 @@ const ListBox = () => {
         );
         const data: ApiResponse = await response.json();
         setItems(data.users);
+        setTotal(Math.ceil(data.total / limit));
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
@@ -89,9 +90,20 @@ const ListBox = () => {
           >
             Previous
           </button>
+          {Array.from({ length: total }, (_, index) => (
+            <button
+              key={index + 1}
+              className={`px-4 py-2 mx-1 ${
+                page === index + 1 ? "bg-gray-300" : ""
+              }`}
+              onClick={() => setPage(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
           <button
             className="px-4 py-2"
-            disabled={items.length < limit}
+            disabled={page === total}
             onClick={handleNextPage}
           >
             Next
