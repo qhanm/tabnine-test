@@ -23,7 +23,6 @@ const ListBox = () => {
         >
           <div
             className="flex items-center justify-center h-full"
-            style={{ paddingBottom: "75%" }} // 4:6 ratio (height = 75% of width)
           >
             <div
               className="w-full h-full bg-gray-200 rounded-md p-4"
