@@ -8,6 +8,18 @@ interface UserData {
   creationDate: string;
 }
 
+interface ApiResponse {
+  users: {
+    id: number;
+    firstName: string;
+    image: string;
+    birthDate: string;
+  }[];
+  total: number;
+  skip: number;
+  limit: number;
+}
+
 const Item: React.FC<UserData> = ({ name, avatar, creationDate }) => (
   <div className="w-1/2 sm:w-1/4 md:w-1/6 px-2 py-2 text-center">
     <div className="flex items-center justify-center h-full">
@@ -37,12 +49,12 @@ const ListBox = () => {
   useEffect(() => {
     fetch("https://dummyjson.com/users")
       .then((response) => response.json())
-      .then((data) => {
-        const users = data.map((user: any) => ({
+      .then((data: ApiResponse) => {
+        const users = data.users.map((user) => ({
           id: user.id,
-          name: user.name,
-          avatar: user.picture.thumbnail,
-          creationDate: user.registered,
+          name: user.firstName,
+          avatar: user.image,
+          creationDate: user.birthDate,
         }));
         setItems(users);
       })
