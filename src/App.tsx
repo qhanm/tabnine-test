@@ -1,12 +1,12 @@
 import './App.css';
-import SearchBar from './components/SearchBar';
+import ListBox from './components/ListBox';
 
 function App(): JSX.Element {
 
 
   return (
     <div>
-      <SearchBar />
+      <ListBox />
     </div>
   );
 }
